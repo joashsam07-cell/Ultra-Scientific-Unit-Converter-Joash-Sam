@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UltraScientific Unit Converter | Joash Sam SciTools</title>
     
+    <!-- Intensive SEO & Search Meta Tags -->
+    <title>UltraScientific Unit Converter | Joash Sam SciTools</title>
+    <meta name="title" content="UltraScientific Unit Converter | Joash Sam SciTools">
+    <meta name="description" content="An elite precision scientific unit converter and physical calculation engine engineered by Joash Sam. Features SI, CGS, and FPS metric frameworks, subatomic to cosmic scales, quantum chemistry, pharmacology, biochemistry, and astrophysics unit conversions with superscript formatting.">
+    <meta name="keywords" content="Joash Sam, Joash Sam SciTools, UltraScientific Unit Converter, Scientific Unit Converter, Physics Calculator, Chemistry Reagents, Pharmacology Units, Biochemistry Calculations, SI CGS FPS Units, Quantum Chemistry Converter, Astrophysics Calculator, Online Scientific Calculator, Dynamic Unit Conversion Engine, Nashik Developer, Open Source Science Tools">
+    <meta name="author" content="Joash Sam">
+    <meta name="robots" content="index, follow">
+   
+
+    <!-- Open Graph / Facebook / LinkedIn SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://joashsam.github.io/SciTools/">
+    <meta property="og:title" content="UltraScientific Unit Converter | Joash Sam SciTools">
+    <meta property="og:description" content="Advanced precision conversion engine for physical sciences, quantum chemistry, and laboratory research by Joash Sam.">
+    <meta property="og:site_name" content="Joash Sam SciTools">
+
+    <!-- Twitter Card SEO -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UltraScientific Unit Converter | Joash Sam SciTools">
+    <meta name="twitter:description" content="Precision scientific conversion utility spanning subatomic to cosmic scales. Engineered by Joash Sam.">
+
     <!-- PWA Manifest Link -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#38bdf8">
@@ -16,11 +36,15 @@
             theme: {
                 extend: {
                     colors: {
-                        sciDark: '#030712',
-                        sciCard: '#0b0f19',
+                        sciDark: '#03050d',
+                        sciCard: '#080d1a',
                         sciBorder: '#1e293b',
-                        sciCyan: '#38bdf8',
-                        sciGlow: '#0284c7'
+                        sciBlue: '#38bdf8',
+                        sciGreen: '#22c55e',
+                        sciPurple: '#c084fc',
+                        sciGlowBlue: 'rgba(56, 189, 248, 0.25)',
+                        sciGlowGreen: 'rgba(34, 197, 94, 0.25)',
+                        sciGlowPurple: 'rgba(192, 132, 252, 0.25)'
                     }
                 }
             }
@@ -28,16 +52,37 @@
     </script>
     <style>
         .glass-panel {
-            background: rgba(11, 15, 25, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.05);
+            background: rgba(8, 13, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
-        .glow-button:hover {
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        .neon-border-blue {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+        }
+        .neon-border-green {
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.15);
+        }
+        .neon-border-purple {
+            border-color: rgba(192, 132, 252, 0.4);
+            box-shadow: 0 0 15px rgba(192, 132, 252, 0.15);
+        }
+        .glow-button-blue:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
+            border-color: rgba(56, 189, 248, 0.8);
+        }
+        .glow-button-green:hover {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.45);
+            border-color: rgba(34, 197, 94, 0.8);
+        }
+        .glow-button-purple:hover {
+            box-shadow: 0 0 20px rgba(192, 132, 252, 0.45);
+            border-color: rgba(192, 132, 252, 0.8);
         }
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-track { background: #03050d; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
         .ticker-fade {
@@ -49,19 +94,19 @@
         }
     </style>
 </head>
-<body class="bg-sciDark text-slate-100 min-h-screen flex flex-col selection:bg-sciCyan selection:text-sciDark">
+<body class="bg-sciDark text-slate-100 min-h-screen flex flex-col selection:bg-sciBlue selection:text-sciDark">
 
     <!-- Top Navigation / Brand Bar -->
-    <header class="border-b border-sciBorder bg-sciCard/50 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex flex-wrap justify-between items-center gap-4">
+    <header class="border-b border-sciBorder bg-sciCard/70 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex flex-wrap justify-between items-center gap-4">
         <div class="flex items-center space-x-3">
-            <div class="h-3 w-3 rounded-full bg-sciCyan animate-pulse shadow-[0_0_10px_#38bdf8]"></div>
-            <span class="text-xs uppercase tracking-widest text-sciCyan font-mono">Joash Sam SciTools // Core Utility</span>
+            <div class="h-3 w-3 rounded-full bg-sciGreen animate-pulse shadow-[0_0_12px_#22c55e]"></div>
+            <span class="text-xs uppercase tracking-widest text-sciGreen font-mono font-semibold">Joash Sam SciTools // Core Utility</span>
         </div>
         <div class="flex items-center gap-3">
-            <button id="installBtn" class="text-xs font-mono bg-sciCyan/10 text-sciCyan border border-sciCyan/30 px-3.5 py-2 rounded-lg hover:bg-sciCyan hover:text-sciDark transition-all duration-300 flex items-center gap-1.5 glow-button cursor-pointer">
+            <button id="installBtn" class="text-xs font-mono bg-sciBlue/10 text-sciBlue border border-sciBlue/30 px-3.5 py-2 rounded-lg hover:bg-sciBlue hover:text-sciDark transition-all duration-300 flex items-center gap-1.5 glow-button-blue cursor-pointer">
                 <span>⬇ Install App</span>
             </button>
-            <span class="text-xs font-mono text-slate-400 bg-sciBorder px-2.5 py-1 rounded-md">v3.0 Elite Edition</span>
+            <span class="text-xs font-mono text-sciPurple bg-sciPurple/10 border border-sciPurple/30 px-2.5 py-1 rounded-md shadow-[0_0_10px_rgba(192,132,252,0.15)]">v3.0 Elite Edition</span>
         </div>
     </header>
 
@@ -69,60 +114,67 @@
     <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-8 flex flex-col gap-8">
         
         <!-- Overview / Description Section -->
-        <section class="glass-panel rounded-2xl p-6 md:p-8 relative overflow-hidden flex flex-col gap-6">
-            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-sciCyan/5 rounded-full blur-3xl pointer-events-none"></div>
-            <div>
+        <section class="glass-panel rounded-2xl p-6 md:p-8 relative overflow-hidden flex flex-col gap-6 neon-border-blue">
+            <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-sciBlue/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-48 h-48 bg-sciPurple/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-xs font-mono text-sciPurple bg-sciPurple/10 border border-sciPurple/30 px-2 py-0.5 rounded">Physics &bull; Chemistry &bull; Pharmacology</span>
+                </div>
                 <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-3">
-                    UltraScientific <span class="text-sciCyan">Unit Converter</span>
+                    UltraScientific <span class="text-sciBlue">Unit Converter</span>
                 </h1>
                 <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-3xl">
-                    An elite-tier precision conversion engine engineered for advanced physical sciences, quantum chemistry, astrophysics, and high-precision laboratory research. Spanning from subatomic femtometers ($\text{fm}$) and electron-volts ($\text{eV}$) to cosmic parsecs ($\text{pc}$), integrating complete SI, CGS, and FPS metric frameworks with clean superscript exponential formatting.
+                    An elite-tier precision conversion engine engineered by <strong class="text-white font-semibold">Joash Sam</strong> for advanced physical sciences, quantum chemistry, biochemistry, astrophysics, and high-precision laboratory research. Spanning subatomic femtometers ($\text{fm}$) and electron-volts ($\text{eV}$) to cosmic parsecs ($\text{pc}$), integrating complete SI, CGS, and FPS metric frameworks with superscript exponential formatting.
                 </p>
             </div>
 
             <!-- Live Scientific Constants / Facts Ticker -->
-            <div class="bg-slate-900/90 border border-sciBorder/80 rounded-xl px-4 py-3 flex items-center gap-3 text-xs md:text-sm">
-                <div class="h-2 w-2 rounded-full bg-sciCyan animate-ping"></div>
+            <div class="bg-slate-950/90 border border-sciBorder rounded-xl px-4 py-3 flex items-center gap-3 text-xs md:text-sm neon-border-green relative z-10">
+                <div class="h-2 w-2 rounded-full bg-sciGreen animate-ping"></div>
                 <div id="sciFactTicker" class="font-mono text-slate-300 ticker-fade flex-grow">
                     <!-- Dynamic content injected via script -->
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
-                <div class="bg-slate-900/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2">
-                    <span class="text-sciCyan font-bold">✓</span> SI, CGS & FPS Frameworks
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono relative z-10">
+                <div class="bg-slate-950/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2 text-slate-300">
+                    <span class="text-sciGreen font-bold">✓</span> SI, CGS & FPS Frameworks
                 </div>
-                <div class="bg-slate-900/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2">
-                    <span class="text-sciCyan font-bold">✓</span> Subatomic to Cosmic Scale
+                <div class="bg-slate-950/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2 text-slate-300">
+                    <span class="text-sciBlue font-bold">✓</span> Subatomic to Cosmic Scale
                 </div>
-                <div class="bg-slate-900/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2">
-                    <span class="text-sciCyan font-bold">✓</span> Superscript Output
+                <div class="bg-slate-950/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2 text-slate-300">
+                    <span class="text-sciPurple font-bold">✓</span> Superscript Output
                 </div>
-                <div class="bg-slate-900/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2">
-                    <span class="text-sciCyan font-bold">✓</span> Offline Caching Active
+                <div class="bg-slate-950/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2 text-slate-300">
+                    <span class="text-sciGreen font-bold">✓</span> Offline Caching Active
                 </div>
             </div>
         </section>
 
         <!-- Section Toggles: Fundamental vs Derived -->
         <div class="flex justify-center">
-            <div class="bg-sciCard p-1.5 rounded-2xl border border-sciBorder inline-flex gap-2">
-                <button onclick="switchSection('fundamental')" id="btn-fundamental" class="px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciCyan text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.3)]">
+            <div class="bg-sciCard p-1.5 rounded-2xl border border-sciBorder inline-flex gap-2 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                <button onclick="switchSection('fundamental')" id="btn-fundamental" class="px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciBlue text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.4)] cursor-pointer">
                     Fundamental Quantities
                 </button>
-                <button onclick="switchSection('derived')" id="btn-derived" class="px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white">
+                <button onclick="switchSection('derived')" id="btn-derived" class="px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white cursor-pointer">
                     Derived Quantities
                 </button>
             </div>
         </div>
 
         <!-- Converter Core UI -->
-        <section class="glass-panel rounded-2xl p-6 md:p-8 flex flex-col gap-6">
+        <section class="glass-panel rounded-2xl p-6 md:p-8 flex flex-col gap-6 neon-border-purple">
             
             <!-- Category Selector Dropdown -->
             <div class="flex flex-col gap-2">
-                <label for="categorySelect" class="text-xs font-mono uppercase tracking-wider text-slate-400">Select Physical Dimension / Category</label>
-                <select id="categorySelect" onchange="updateUnitsDropdowns()" class="bg-slate-900 border border-sciBorder rounded-xl px-4 py-3 text-slate-100 font-medium focus:outline-none focus:border-sciCyan transition-colors">
+                <label for="categorySelect" class="text-xs font-mono uppercase tracking-wider text-sciPurple flex items-center gap-1.5">
+                    <span>⚡ Select Physical Dimension / Category</span>
+                </label>
+                <select id="categorySelect" onchange="updateUnitsDropdowns()" class="bg-slate-950 border border-sciBorder rounded-xl px-4 py-3 text-slate-100 font-medium focus:outline-none focus:border-sciPurple transition-colors shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]">
                     <!-- Dynamically populated -->
                 </select>
             </div>
@@ -131,26 +183,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 
                 <!-- From Box -->
-                <div class="bg-slate-900/90 border border-sciBorder rounded-xl p-5 flex flex-col gap-3">
+                <div class="bg-slate-950/90 border border-sciBorder rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:border-sciBlue/50">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-mono text-slate-400">INPUT VALUE & UNIT</span>
                     </div>
-                    <input type="number" id="inputValue" value="1" oninput="performConversion()" class="bg-slate-950 border border-sciBorder rounded-lg px-4 py-3 text-2xl font-mono text-white focus:outline-none focus:border-sciCyan transition-colors" placeholder="Enter value...">
-                    <select id="fromUnitSelect" onchange="performConversion()" class="bg-slate-950 border border-sciBorder rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-sciCyan">
+                    <input type="number" id="inputValue" value="1" oninput="performConversion()" class="bg-slate-900 border border-sciBorder rounded-lg px-4 py-3 text-2xl font-mono text-white focus:outline-none focus:border-sciBlue transition-colors shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]" placeholder="Enter value...">
+                    <select id="fromUnitSelect" onchange="performConversion()" class="bg-slate-900 border border-sciBorder rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-sciBlue">
                         <!-- Dynamically populated -->
                     </select>
                 </div>
 
                 <!-- To Box -->
-                <div class="bg-slate-900/90 border border-sciBorder rounded-xl p-5 flex flex-col gap-3 relative">
+                <div class="bg-slate-950/90 border border-sciBorder rounded-xl p-5 flex flex-col gap-3 relative transition-all duration-300 hover:border-sciGreen/50">
                     <div class="flex justify-between items-center">
-                        <span class="text-xs font-mono text-sciCyan">CONVERTED RESULT</span>
+                        <span class="text-xs font-mono text-sciGreen font-semibold">CONVERTED RESULT</span>
                     </div>
                     <!-- Output Display -->
-                    <div id="outputValue" class="bg-slate-950 border border-sciBorder/60 rounded-lg px-4 py-3 text-2xl font-mono text-sciCyan min-h-[58px] flex items-center overflow-x-auto">
+                    <div id="outputValue" class="bg-slate-900 border border-sciBorder/60 rounded-lg px-4 py-3 text-2xl font-mono text-sciGreen min-h-[58px] flex items-center overflow-x-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]">
                         1
                     </div>
-                    <select id="toUnitSelect" onchange="performConversion()" class="bg-slate-950 border border-sciBorder rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-sciCyan">
+                    <select id="toUnitSelect" onchange="performConversion()" class="bg-slate-900 border border-sciBorder rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-sciGreen">
                         <!-- Dynamically populated -->
                     </select>
                 </div>
@@ -160,8 +212,10 @@
         </section>
 
         <!-- Live Category Matrix Reference Table -->
-        <section class="glass-panel rounded-2xl p-6 flex flex-col gap-4">
-            <h3 class="text-sm font-mono uppercase tracking-wider text-slate-400">Complete Category Conversion Matrix</h3>
+        <section class="glass-panel rounded-2xl p-6 flex flex-col gap-4 neon-border-green">
+            <h3 class="text-sm font-mono uppercase tracking-wider text-sciGreen font-semibold flex items-center gap-2">
+                <span>✦ Complete Category Conversion Matrix</span>
+            </h3>
             <div id="matrixGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
                 <!-- Dynamically filled with all units in current category converted live -->
             </div>
@@ -170,8 +224,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-sciBorder py-6 text-center text-xs text-slate-500 font-mono">
-        Joash Sam SciTools &bull; UltraScientific Unit Engine &bull; Built for Elite Research Excellence
+    <footer class="border-t border-sciBorder py-6 text-center text-xs text-slate-400 font-mono bg-sciCard/40">
+        <span class="text-sciBlue">Joash Sam SciTools</span> &bull; <span class="text-sciPurple">UltraScientific Unit Engine</span> &bull; Built for Elite Research Excellence
     </footer>
 
     <!-- Load Data Dictionary First -->
@@ -199,7 +253,7 @@
             tickerEl.classList.remove('ticker-fade');
             void tickerEl.offsetWidth;
             tickerEl.classList.add('ticker-fade');
-            tickerEl.innerHTML = `<span class="text-sciCyan font-semibold">CONSTANT BENCHMARK //</span> ${fact.label}: <span class="text-white font-mono">${fact.value}</span>`;
+            tickerEl.innerHTML = `<span class="text-sciGreen font-semibold">CONSTANT BENCHMARK //</span> ${fact.label}: <span class="text-white font-mono">${fact.value}</span>`;
             currentFactIndex = (currentFactIndex + 1) % sciFacts.length;
         }
 
@@ -208,12 +262,12 @@
         function switchSection(section) {
             currentSection = section;
             document.getElementById('btn-fundamental').className = section === 'fundamental' 
-                ? 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciCyan text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.3)]' 
-                : 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white';
+                ? 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciBlue text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.4)] cursor-pointer' 
+                : 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white cursor-pointer';
             
             document.getElementById('btn-derived').className = section === 'derived' 
-                ? 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciCyan text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.3)]' 
-                : 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white';
+                ? 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciBlue text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.4)] cursor-pointer' 
+                : 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white cursor-pointer';
             
             populateCategories();
         }
@@ -323,10 +377,10 @@
                 }
 
                 const card = document.createElement('div');
-                card.className = 'bg-slate-900/80 border border-sciBorder p-3 rounded-xl flex flex-col justify-between';
+                card.className = 'bg-slate-950/80 border border-sciBorder p-3 rounded-xl flex flex-col justify-between hover:border-sciGreen/40 transition-colors';
                 card.innerHTML = `
                     <span class="text-xs text-slate-400 font-mono">${cat.units[uKey].label}</span>
-                    <span class="text-sciCyan font-mono font-semibold mt-1">${formatScientificSuperscript(res, 4)}</span>
+                    <span class="text-sciGreen font-mono font-semibold mt-1">${formatScientificSuperscript(res, 4)}</span>
                 `;
                 matrixGrid.appendChild(card);
             }
@@ -362,7 +416,6 @@
                 }
                 deferredPrompt = null;
             } else {
-                // Fallback guide if browser blocks automated prompts (e.g., already installed or manual check needed)
                 alert("To install SciConverter:\n\n• On Chrome/Edge/Brave: Click the install icon (🖥️/➕) in your browser's address bar or open the browser menu and select 'Install app'.\n• On Mobile Safari/Android: Tap the Share or Menu button and select 'Add to Home Screen'.");
             }
         });
