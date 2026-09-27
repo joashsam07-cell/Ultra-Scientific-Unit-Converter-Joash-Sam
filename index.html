@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UltraScientific Unit Converter | Joash Sam SciTools</title>
+    
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#38bdf8">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,7 +36,6 @@
         .glow-button:hover {
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
-        /* Custom scrollbar for clean Sci-Fi look */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #030712; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
@@ -54,8 +58,8 @@
             <span class="text-xs uppercase tracking-widest text-sciCyan font-mono">Joash Sam SciTools // Core Utility</span>
         </div>
         <div class="flex items-center gap-3">
-            <button id="installBtn" class="hidden text-xs font-mono bg-sciCyan/10 text-sciCyan border border-sciCyan/30 px-3 py-1.5 rounded-lg hover:bg-sciCyan hover:text-sciDark transition-all duration-300 flex items-center gap-1.5 glow-button">
-                <span>⬇ Install App (PWA)</span>
+            <button id="installBtn" class="text-xs font-mono bg-sciCyan/10 text-sciCyan border border-sciCyan/30 px-3.5 py-2 rounded-lg hover:bg-sciCyan hover:text-sciDark transition-all duration-300 flex items-center gap-1.5 glow-button cursor-pointer">
+                <span>⬇ Install App</span>
             </button>
             <span class="text-xs font-mono text-slate-400 bg-sciBorder px-2.5 py-1 rounded-md">v3.0 Elite Edition</span>
         </div>
@@ -76,7 +80,7 @@
                 </p>
             </div>
 
-            <!-- Live Scientific Constants / Facts Ticker (Changes every 5s) -->
+            <!-- Live Scientific Constants / Facts Ticker -->
             <div class="bg-slate-900/90 border border-sciBorder/80 rounded-xl px-4 py-3 flex items-center gap-3 text-xs md:text-sm">
                 <div class="h-2 w-2 rounded-full bg-sciCyan animate-ping"></div>
                 <div id="sciFactTicker" class="font-mono text-slate-300 ticker-fade flex-grow">
@@ -178,7 +182,6 @@
         let currentSection = 'fundamental';
         let currentCategoryKey = '';
 
-        // Scientific Constants Ticker Engine (Rotates every 5 seconds)
         const sciFacts = [
             { label: "Rest Mass of an Electron", value: "9.1094 × 10<sup>-31</sup> kg" },
             { label: "Speed of Light in Vacuum", value: "2.9979 × 10<sup>8</sup> m/s" },
@@ -194,7 +197,7 @@
             if (!tickerEl) return;
             const fact = sciFacts[currentFactIndex];
             tickerEl.classList.remove('ticker-fade');
-            void tickerEl.offsetWidth; // Trigger reflow
+            void tickerEl.offsetWidth;
             tickerEl.classList.add('ticker-fade');
             tickerEl.innerHTML = `<span class="text-sciCyan font-semibold">CONSTANT BENCHMARK //</span> ${fact.label}: <span class="text-white font-mono">${fact.value}</span>`;
             currentFactIndex = (currentFactIndex + 1) % sciFacts.length;
@@ -244,7 +247,7 @@
             toSelect.innerHTML = '';
 
             let keys = Object.keys(cat.units);
-            keys.forEach((uKey, idx) => {
+            keys.forEach((uKey) => {
                 const uObj = cat.units[uKey];
                 
                 const opt1 = document.createElement('option');
@@ -259,7 +262,7 @@
             });
 
             if (keys.length > 1) {
-                toSelect.selectedIndex = 1; // Default different target unit for convenience
+                toSelect.selectedIndex = 1;
             }
 
             performConversion();
@@ -287,10 +290,7 @@
                 result = baseValue / cat.units[toUnit].factor;
             }
 
-            // Render with automatic superscript exponential formatting
             outputDiv.innerHTML = formatScientificSuperscript(result, 5);
-
-            // Update Live Matrix Reference Grid
             updateMatrixGrid(num, fromUnit);
         }
 
@@ -332,36 +332,39 @@
             }
         }
 
-        // Initialize on load and register Service Worker for offline caching
+        // Initialize on load and register Service Worker
         window.onload = () => {
             populateCategories();
             rotateFactTicker();
 
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('Service Worker registration successful:', reg.scope))
+                    .then(reg => console.log('Service Worker registered:', reg.scope))
                     .catch(err => console.log('Service Worker registration failed:', err));
             }
         };
 
-        // PWA Installation Setup
+        // Robust PWA Installation Handler
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
 
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            installBtn.classList.remove('hidden');
         });
 
         installBtn.addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                installBtn.classList.add('hidden');
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+            } else {
+                // Fallback guide if browser blocks automated prompts (e.g., already installed or manual check needed)
+                alert("To install SciConverter:\n\n• On Chrome/Edge/Brave: Click the install icon (🖥️/➕) in your browser's address bar or open the browser menu and select 'Install app'.\n• On Mobile Safari/Android: Tap the Share or Menu button and select 'Add to Home Screen'.");
             }
-            deferredPrompt = null;
         });
     </script>
 </body>
