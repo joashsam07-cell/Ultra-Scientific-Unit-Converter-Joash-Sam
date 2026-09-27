@@ -1,6 +1,6 @@
 /**
  * Joash Sam SciTools - Comprehensive Scientific Unit Engine Dictionary
- * Curated for Class 11 & 12 NCERT Physics & Chemistry Standards (SI, CGS, & FPS Systems)
+ * Curated for Advanced Physics & Chemistry Standards (SI, CGS, & FPS Systems)
  */
 
 const scientificUnits = {
@@ -95,6 +95,111 @@ const scientificUnits = {
         }
     },
     derived: {
+        volume: {
+            name: "Volume / Capacity",
+            baseUnit: "cubic_meter",
+            units: {
+                microliter:       { label: "Microliter (µL)",           factor: 1e-9 },
+                milliliter:       { label: "Milliliter (mL / cm³)",     factor: 1e-6 },
+                liter:            { label: "Liter (L / dm³)",           factor: 1e-3 },
+                cubic_centimeter: { label: "Cubic Centimeter (cm³) [CGS]", factor: 1e-6 },
+                cubic_meter:      { label: "Cubic Meter (m³) [SI]",     factor: 1    },
+                gallon_us:        { label: "US Liquid Gallon (gal)",    factor: 0.00378541 },
+                cubic_foot:       { label: "Cubic Foot (ft³) [FPS]",    factor: 0.0283168 },
+                cubic_inch:       { label: "Cubic Inch (in³)",          factor: 1.6387e-5 }
+            }
+        },
+        density: {
+            name: "Mass Density",
+            baseUnit: "kg_per_m3",
+            units: {
+                g_per_cm3:  { label: "Gram/cubic centimeter (g/cm³) [CGS]", factor: 1000 },
+                g_per_liter:{ label: "Gram/liter (g/L)",               factor: 1 },
+                mg_per_ml:  { label: "Milligram/milliliter (mg/mL)",   factor: 1 },
+                kg_per_m3:  { label: "Kilogram/cubic meter (kg/m³) [SI]", factor: 1 },
+                lb_per_ft3: { label: "Pound/cubic foot (lb/ft³) [FPS]", factor: 16.0185 }
+            }
+        },
+        momentum: {
+            name: "Linear Momentum",
+            baseUnit: "kg_mps",
+            units: {
+                g_cmps:       { label: "Gram centimeter/second (g·cm/s) [CGS]", factor: 1e-5 },
+                kg_mps:       { label: "Kilogram meter/second (kg·m/s) [SI]",   factor: 1 },
+                newton_second:{ label: "Newton-second (N·s)",                 factor: 1 }
+            }
+        },
+        frequency: {
+            name: "Frequency",
+            baseUnit: "hertz",
+            units: {
+                millihertz: { label: "Millihertz (mHz)", factor: 1e-3 },
+                hertz:      { label: "Hertz (Hz / s⁻¹) [SI]", factor: 1 },
+                kilohertz:  { label: "Kilohertz (kHz)", factor: 1e3 },
+                megahertz:  { label: "Megahertz (MHz)", factor: 1e6 },
+                gigahertz:  { label: "Gigahertz (GHz)", factor: 1e9 },
+                rpm:        { label: "Revolutions per minute (RPM)", factor: 0.01666667 }
+            }
+        },
+        charge: {
+            name: "Electric Charge",
+            baseUnit: "coulomb",
+            units: {
+                picocoulomb:  { label: "Picocoulomb (pC)",  factor: 1e-12 },
+                nanocoulomb:  { label: "Nanocoulomb (nC)",  factor: 1e-9 },
+                microcoulomb: { label: "Microcoulomb (µC)", factor: 1e-6 },
+                millicoulomb: { label: "Millicoulomb (mC)", factor: 1e-3 },
+                coulomb:      { label: "Coulomb (C) [SI]",  factor: 1 },
+                ampere_hour:  { label: "Ampere-hour (A·h)", factor: 3600 },
+                statcoulomb:  { label: "Statcoulomb (statC / esu)", factor: 3.33564e-10 }
+            }
+        },
+        capacitance: {
+            name: "Electrical Capacitance",
+            baseUnit: "farad",
+            units: {
+                picofarad:  { label: "Picofarad (pF)",  factor: 1e-12 },
+                nanofarad:  { label: "Nanofarad (nF)",  factor: 1e-9 },
+                microfarad: { label: "Microfarad (µF)", factor: 1e-6 },
+                millifarad: { label: "Millifarad (mF)", factor: 1e-3 },
+                farad:      { label: "Farad (F) [SI]",  factor: 1 }
+            }
+        },
+        inductance: {
+            name: "Electrical Inductance",
+            baseUnit: "henry",
+            units: {
+                nanohenry:  { label: "Nanohenry (nH)",  factor: 1e-9 },
+                microhenry: { label: "Microhenry (µH)", factor: 1e-6 },
+                millihenry: { label: "Millihenry (mH)", factor: 1e-3 },
+                henry:      { label: "Henry (H) [SI]",  factor: 1 }
+            }
+        },
+        magnetic_flux: {
+            name: "Magnetic Flux",
+            baseUnit: "weber",
+            units: {
+                maxwell: { label: "Maxwell (Mx) [CGS]", factor: 1e-8 },
+                weber:   { label: "Weber (Wb) [SI]",   factor: 1    }
+            }
+        },
+        angular_velocity: {
+            name: "Angular Velocity",
+            baseUnit: "rad_per_sec",
+            units: {
+                deg_per_sec: { label: "Degree/second (°/s)", factor: 0.01745329 },
+                rad_per_sec: { label: "Radian/second (rad/s) [SI]", factor: 1 },
+                rpm_ang:     { label: "RPM (rev/min)", factor: 0.10471976 }
+            }
+        },
+        surface_tension: {
+            name: "Surface Tension",
+            baseUnit: "newton_per_meter",
+            units: {
+                dyne_per_cm:      { label: "Dyne/centimeter (dyn/cm) [CGS]", factor: 1e-3 },
+                newton_per_meter: { label: "Newton/meter (N/m) [SI]", factor: 1 }
+            }
+        },
         velocity: {
             name: "Velocity / Speed",
             baseUnit: "mps",
