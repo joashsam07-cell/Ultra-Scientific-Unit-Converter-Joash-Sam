@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UltraScientific Unit Converter | Joash Sam SciTools</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sciDark: '#030712',
+                        sciCard: '#0b0f19',
+                        sciBorder: '#1e293b',
+                        sciCyan: '#38bdf8',
+                        sciGlow: '#0284c7'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.05);
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+        /* Custom scrollbar for clean Sci-Fi look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+        .ticker-fade {
+            animation: fadeInOut 0.5s ease-in-out;
+        }
+        @keyframes fadeInOut {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-sciDark text-slate-100 min-h-screen flex flex-col selection:bg-sciCyan selection:text-sciDark">
+
+    <!-- Top Navigation / Brand Bar -->
+    <header class="border-b border-sciBorder bg-sciCard/50 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center space-x-3">
+            <div class="h-3 w-3 rounded-full bg-sciCyan animate-pulse shadow-[0_0_10px_#38bdf8]"></div>
+            <span class="text-xs uppercase tracking-widest text-sciCyan font-mono">Joash Sam SciTools // Core Utility</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <button id="installBtn" class="hidden text-xs font-mono bg-sciCyan/10 text-sciCyan border border-sciCyan/30 px-3 py-1.5 rounded-lg hover:bg-sciCyan hover:text-sciDark transition-all duration-300 flex items-center gap-1.5 glow-button">
+                <span>⬇ Install App (PWA)</span>
+            </button>
+            <span class="text-xs font-mono text-slate-400 bg-sciBorder px-2.5 py-1 rounded-md">v3.0 Elite Edition</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-8 flex flex-col gap-8">
+        
+        <!-- Overview / Description Section -->
+        <section class="glass-panel rounded-2xl p-6 md:p-8 relative overflow-hidden flex flex-col gap-6">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-sciCyan/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div>
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-3">
+                    UltraScientific <span class="text-sciCyan">Unit Converter</span>
+                </h1>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-3xl">
+                    An elite-tier precision conversion engine engineered for advanced physical sciences, quantum chemistry, astrophysics, and high-precision laboratory research. Spanning from subatomic femtometers ($\text{fm}$) and electron-volts ($\text{eV}$) to cosmic parsecs ($\text{pc}$), integrating complete SI, CGS, and FPS metric frameworks with clean superscript exponential formatting.
+                </p>
+            </div>
+
+            <!-- Live Scientific Constants / Facts Ticker (Changes every 5s) -->
+            <div class="bg-slate-900/90 border border-sciBorder/80 rounded-xl px-4 py-3 flex items-center gap-3 text-xs md:text-sm">
+                <div class="h-2 w-2 rounded-full bg-sciCyan animate-ping"></div>
+                <div id="sciFactTicker" class="font-mono text-slate-300 ticker-fade flex-grow">
+                    <!-- Dynamic content injected via script -->
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
+                <div class="bg-slate-900/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2">
+                    <span class="text-sciCyan font-bold">✓</span> SI, CGS & FPS Frameworks
+                </div>
+                <div class="bg-slate-900/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2">
+                    <span class="text-sciCyan font-bold">✓</span> Subatomic to Cosmic Scale
+                </div>
+                <div class="bg-slate-900/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2">
+                    <span class="text-sciCyan font-bold">✓</span> Superscript Output
+                </div>
+                <div class="bg-slate-900/80 border border-sciBorder p-2.5 rounded-xl flex items-center gap-2">
+                    <span class="text-sciCyan font-bold">✓</span> Offline Caching Active
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Toggles: Fundamental vs Derived -->
+        <div class="flex justify-center">
+            <div class="bg-sciCard p-1.5 rounded-2xl border border-sciBorder inline-flex gap-2">
+                <button onclick="switchSection('fundamental')" id="btn-fundamental" class="px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciCyan text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.3)]">
+                    Fundamental Quantities
+                </button>
+                <button onclick="switchSection('derived')" id="btn-derived" class="px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white">
+                    Derived Quantities
+                </button>
+            </div>
+        </div>
+
+        <!-- Converter Core UI -->
+        <section class="glass-panel rounded-2xl p-6 md:p-8 flex flex-col gap-6">
+            
+            <!-- Category Selector Dropdown -->
+            <div class="flex flex-col gap-2">
+                <label for="categorySelect" class="text-xs font-mono uppercase tracking-wider text-slate-400">Select Physical Dimension / Category</label>
+                <select id="categorySelect" onchange="updateUnitsDropdowns()" class="bg-slate-900 border border-sciBorder rounded-xl px-4 py-3 text-slate-100 font-medium focus:outline-none focus:border-sciCyan transition-colors">
+                    <!-- Dynamically populated -->
+                </select>
+            </div>
+
+            <!-- Conversion Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                
+                <!-- From Box -->
+                <div class="bg-slate-900/90 border border-sciBorder rounded-xl p-5 flex flex-col gap-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-mono text-slate-400">INPUT VALUE & UNIT</span>
+                    </div>
+                    <input type="number" id="inputValue" value="1" oninput="performConversion()" class="bg-slate-950 border border-sciBorder rounded-lg px-4 py-3 text-2xl font-mono text-white focus:outline-none focus:border-sciCyan transition-colors" placeholder="Enter value...">
+                    <select id="fromUnitSelect" onchange="performConversion()" class="bg-slate-950 border border-sciBorder rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-sciCyan">
+                        <!-- Dynamically populated -->
+                    </select>
+                </div>
+
+                <!-- To Box -->
+                <div class="bg-slate-900/90 border border-sciBorder rounded-xl p-5 flex flex-col gap-3 relative">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-mono text-sciCyan">CONVERTED RESULT</span>
+                    </div>
+                    <!-- Output Display -->
+                    <div id="outputValue" class="bg-slate-950 border border-sciBorder/60 rounded-lg px-4 py-3 text-2xl font-mono text-sciCyan min-h-[58px] flex items-center overflow-x-auto">
+                        1
+                    </div>
+                    <select id="toUnitSelect" onchange="performConversion()" class="bg-slate-950 border border-sciBorder rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-sciCyan">
+                        <!-- Dynamically populated -->
+                    </select>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Live Category Matrix Reference Table -->
+        <section class="glass-panel rounded-2xl p-6 flex flex-col gap-4">
+            <h3 class="text-sm font-mono uppercase tracking-wider text-slate-400">Complete Category Conversion Matrix</h3>
+            <div id="matrixGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+                <!-- Dynamically filled with all units in current category converted live -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-sciBorder py-6 text-center text-xs text-slate-500 font-mono">
+        Joash Sam SciTools &bull; UltraScientific Unit Engine &bull; Built for Elite Research Excellence
+    </footer>
+
+    <!-- Load Data Dictionary First -->
+    <script src="units-data.js"></script>
+
+    <!-- Main UI & App Logic Script -->
+    <script>
+        let currentSection = 'fundamental';
+        let currentCategoryKey = '';
+
+        // Scientific Constants Ticker Engine (Rotates every 5 seconds)
+        const sciFacts = [
+            { label: "Rest Mass of an Electron", value: "9.1094 × 10<sup>-31</sup> kg" },
+            { label: "Speed of Light in Vacuum", value: "2.9979 × 10<sup>8</sup> m/s" },
+            { label: "Planck's Constant (h)", value: "6.6261 × 10<sup>-34</sup> J·s" },
+            { label: "Avogadro Constant (Nₐ)", value: "6.0221 × 10<sup>23</sup> mol<sup>-1</sup>" },
+            { label: "Astronomical Unit (1 AU)", value: "1.4960 × 10<sup>11</sup> meters" },
+            { label: "Elementary Charge (e)", value: "1.6022 × 10<sup>-19</sup> Coulombs" }
+        ];
+        let currentFactIndex = 0;
+
+        function rotateFactTicker() {
+            const tickerEl = document.getElementById('sciFactTicker');
+            if (!tickerEl) return;
+            const fact = sciFacts[currentFactIndex];
+            tickerEl.classList.remove('ticker-fade');
+            void tickerEl.offsetWidth; // Trigger reflow
+            tickerEl.classList.add('ticker-fade');
+            tickerEl.innerHTML = `<span class="text-sciCyan font-semibold">CONSTANT BENCHMARK //</span> ${fact.label}: <span class="text-white font-mono">${fact.value}</span>`;
+            currentFactIndex = (currentFactIndex + 1) % sciFacts.length;
+        }
+
+        setInterval(rotateFactTicker, 5000);
+
+        function switchSection(section) {
+            currentSection = section;
+            document.getElementById('btn-fundamental').className = section === 'fundamental' 
+                ? 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciCyan text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.3)]' 
+                : 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white';
+            
+            document.getElementById('btn-derived').className = section === 'derived' 
+                ? 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-sciCyan text-sciDark shadow-[0_0_15px_rgba(56,189,248,0.3)]' 
+                : 'px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white';
+            
+            populateCategories();
+        }
+
+        function populateCategories() {
+            const catSelect = document.getElementById('categorySelect');
+            catSelect.innerHTML = '';
+            const categories = scientificUnits[currentSection];
+            
+            let firstKey = '';
+            for (const key in categories) {
+                if (!firstKey) firstKey = key;
+                const opt = document.createElement('option');
+                opt.value = key;
+                opt.textContent = categories[key].name;
+                catSelect.appendChild(opt);
+            }
+            currentCategoryKey = firstKey;
+            updateUnitsDropdowns();
+        }
+
+        function updateUnitsDropdowns() {
+            const catSelect = document.getElementById('categorySelect');
+            currentCategoryKey = catSelect.value;
+            const cat = scientificUnits[currentSection][currentCategoryKey];
+
+            const fromSelect = document.getElementById('fromUnitSelect');
+            const toSelect = document.getElementById('toUnitSelect');
+            
+            fromSelect.innerHTML = '';
+            toSelect.innerHTML = '';
+
+            let keys = Object.keys(cat.units);
+            keys.forEach((uKey, idx) => {
+                const uObj = cat.units[uKey];
+                
+                const opt1 = document.createElement('option');
+                opt1.value = uKey;
+                opt1.textContent = uObj.label;
+                fromSelect.appendChild(opt1);
+
+                const opt2 = document.createElement('option');
+                opt2.value = uKey;
+                opt2.textContent = uObj.label;
+                toSelect.appendChild(opt2);
+            });
+
+            if (keys.length > 1) {
+                toSelect.selectedIndex = 1; // Default different target unit for convenience
+            }
+
+            performConversion();
+        }
+
+        function performConversion() {
+            const valInput = document.getElementById('inputValue').value;
+            const fromUnit = document.getElementById('fromUnitSelect').value;
+            const toUnit = document.getElementById('toUnitSelect').value;
+            const outputDiv = document.getElementById('outputValue');
+
+            const cat = scientificUnits[currentSection][currentCategoryKey];
+            const num = parseFloat(valInput);
+
+            if (isNaN(num)) {
+                outputDiv.textContent = "Invalid input";
+                return;
+            }
+
+            let result;
+            if (cat.isSpecial) {
+                result = convertTemperature(fromUnit, toUnit, num);
+            } else {
+                const baseValue = num * cat.units[fromUnit].factor;
+                result = baseValue / cat.units[toUnit].factor;
+            }
+
+            // Render with automatic superscript exponential formatting
+            outputDiv.innerHTML = formatScientificSuperscript(result, 5);
+
+            // Update Live Matrix Reference Grid
+            updateMatrixGrid(num, fromUnit);
+        }
+
+        function convertTemperature(from, to, val) {
+            let kelvin;
+            if (from === 'kelvin') kelvin = val;
+            else if (from === 'celsius') kelvin = val + 273.15;
+            else if (from === 'fahrenheit') kelvin = (val - 32) * 5/9 + 273.15;
+
+            if (to === 'kelvin') return kelvin;
+            if (to === 'celsius') return kelvin - 273.15;
+            if (to === 'fahrenheit') return (kelvin - 273.15) * 9/5 + 32;
+        }
+
+        function updateMatrixGrid(val, fromUnit) {
+            const matrixGrid = document.getElementById('matrixGrid');
+            matrixGrid.innerHTML = '';
+            const cat = scientificUnits[currentSection][currentCategoryKey];
+            const num = parseFloat(val);
+            if (isNaN(num)) return;
+
+            let baseValue = cat.isSpecial ? val : num * cat.units[fromUnit].factor;
+
+            for (const uKey in cat.units) {
+                let res;
+                if (cat.isSpecial) {
+                    res = convertTemperature(fromUnit, uKey, num);
+                } else {
+                    res = baseValue / cat.units[uKey].factor;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'bg-slate-900/80 border border-sciBorder p-3 rounded-xl flex flex-col justify-between';
+                card.innerHTML = `
+                    <span class="text-xs text-slate-400 font-mono">${cat.units[uKey].label}</span>
+                    <span class="text-sciCyan font-mono font-semibold mt-1">${formatScientificSuperscript(res, 4)}</span>
+                `;
+                matrixGrid.appendChild(card);
+            }
+        }
+
+        // Initialize on load and register Service Worker for offline caching
+        window.onload = () => {
+            populateCategories();
+            rotateFactTicker();
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registration successful:', reg.scope))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            }
+        };
+
+        // PWA Installation Setup
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.remove('hidden');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                installBtn.classList.add('hidden');
+            }
+            deferredPrompt = null;
+        });
+    </script>
+</body>
+</html>
