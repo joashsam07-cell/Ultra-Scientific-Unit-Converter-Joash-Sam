@@ -95,6 +95,24 @@ const scientificUnits = {
         }
     },
     derived: {
+        area: {
+            name: "Area",
+            baseUnit: "square_meter",
+            units: {
+                barn:              { label: "Barn (b) [Nuclear Physics]", factor: 1e-28 },
+                square_micrometer: { label: "Square Micrometer (µm²)",    factor: 1e-12 },
+                square_millimeter: { label: "Square Millimeter (mm²)",    factor: 1e-6 },
+                square_centimeter: { label: "Square Centimeter (cm²) [CGS]", factor: 1e-4 },
+                square_meter:      { label: "Square Meter (m²) [SI]",     factor: 1 },
+                hectare:           { label: "Hectare (ha)",               factor: 1e4 },
+                square_kilometer:  { label: "Square Kilometer (km²)",     factor: 1e6 },
+                square_inch:       { label: "Square Inch (in²) [FPS]",    factor: 0.00064516 },
+                square_foot:       { label: "Square Foot (ft²) [FPS]",    factor: 0.09290304 },
+                square_yard:       { label: "Square Yard (yd²) [FPS]",    factor: 0.83612736 },
+                acre:              { label: "Acre (ac) [FPS]",            factor: 4046.8564224 },
+                square_mile:       { label: "Square Mile (mi²) [FPS]",    factor: 2589988.110336 }
+            }
+        },
         volume: {
             name: "Volume / Capacity",
             baseUnit: "cubic_meter",
@@ -114,8 +132,8 @@ const scientificUnits = {
             baseUnit: "kg_per_m3",
             units: {
                 g_per_cm3:  { label: "Gram/cubic centimeter (g/cm³) [CGS]", factor: 1000 },
-                g_per_liter:{ label: "Gram/liter (g/L)",               factor: 1 },
-                mg_per_ml:  { label: "Milligram/milliliter (mg/mL)",   factor: 1 },
+                g_per_liter:{ label: "Gram/liter (g/L)",                factor: 1 },
+                mg_per_ml:  { label: "Milligram/milliliter (mg/mL)",    factor: 1 },
                 kg_per_m3:  { label: "Kilogram/cubic meter (kg/m³) [SI]", factor: 1 },
                 lb_per_ft3: { label: "Pound/cubic foot (lb/ft³) [FPS]", factor: 16.0185 }
             }
@@ -126,7 +144,7 @@ const scientificUnits = {
             units: {
                 g_cmps:       { label: "Gram centimeter/second (g·cm/s) [CGS]", factor: 1e-5 },
                 kg_mps:       { label: "Kilogram meter/second (kg·m/s) [SI]",   factor: 1 },
-                newton_second:{ label: "Newton-second (N·s)",                 factor: 1 }
+                newton_second:{ label: "Newton-second (N·s)",                   factor: 1 }
             }
         },
         frequency: {
